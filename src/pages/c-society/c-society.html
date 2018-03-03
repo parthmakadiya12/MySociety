@@ -1,0 +1,28 @@
+<ion-content class="background">
+  <ion-card>
+    <ion-card-header>
+      Login Form
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list no-line>
+        <ion-item>
+          <ion-input type="text" placeholder="Society Name" [(ngModel)]="society"></ion-input>
+        </ion-item>
+        <a>Forgot your login detail? <b>Get help signing in</b></a>
+        <button ion-button block outline color="light" (click)="createSociety(society)">Create Society</button>
+        <p>OR</p>
+          <div *ngFor="let soc of socities">
+            <button ion-button block outline color="light" (click)="openChat(soc.societyName)">Chat, {{soc.societyName}}</button>
+            <button ion-button block outline color="light" (click)="JoinSociety(soc.societyName)">Join, {{soc.societyName}}</button>
+          </div>
+          <button ion-button block outline color="light" (click)="openChat()">Chat</button>
+        <!--<button ion-button block color="facebook">
+            <ion-icon name="logo-facebook"></ion-icon> Login with facebook
+          </button>-->
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+
+  <button class="bottom" ion-button clear full color="light" [navPush]="HomePage">Don't have an account? Sign up</button>
+</ion-content>

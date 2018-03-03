@@ -1,0 +1,125 @@
+<div *ngIf="edited">
+  <!--<img src="assets/img/poster.jpg" />-->
+</div>
+<ion-content fullscreen>
+  <!--<img src="assets/img/poster.jpg"/>-->
+  <ion-segment [(ngModel)]="category">
+    <ion-segment-button value="Profile">
+      Profile
+    </ion-segment-button>
+    <ion-segment-button value="Dashboard">
+      Dashboard
+    </ion-segment-button>
+    <ion-segment-button value="About">
+      About
+    </ion-segment-button>
+  </ion-segment>
+  <ion-card (swipe)="swipeEvent($event)">
+    <div [ngSwitch]="category">
+      <!--Start of 1st -->
+      <ion-item *ngSwitchCase="'Profile'">
+        <ion-item>
+          <ion-avatar item-left>
+            <img src="{{imageUrl}}" />
+          </ion-avatar>
+          <h2>{{givenName}}</h2>
+          <p>{{email}}</p>
+        </ion-item>
+        <img src="{{imageUrl}}" />
+        <ion-card-content>
+          <p>Email: {{email}}<br> Family Name: {{familyName}}<br> Given Name: {{givenName}}<br> User ID: {{userId}}</p>
+        </ion-card-content>
+        <ion-row>
+          <ion-col>
+            <button ion-button icon-left clear small>
+            <ion-icon name="heart"></ion-icon>
+            <div>We Miss You {{givenName}}</div><br/>
+          </button>
+            <ion-item>
+              <button ion-button (click)="logout()">G+ Logout</button><br/>
+            </ion-item>
+            <ion-item>
+              <button ion-button (click)="society()">Create Society</button>
+            </ion-item>
+
+          </ion-col>
+        </ion-row>
+      </ion-item>
+      <!--End of 1st -->
+
+
+      <!--Start of 2st -->
+      <ion-item *ngSwitchCase="'Dashboard'">
+        <ion-list>
+            <h2>Welcome To , {{SocietyX}} {{givenName}}</h2>
+        
+            <button ion-item (click)="Requests()">
+              <ion-icon name="cart" item-start></ion-icon>
+              My Request
+            </button>
+            <button ion-item (click)="fillTank()" [ngStyle]="{'background-color': buttonColor1}">
+              <ion-icon name="cart" item-start></ion-icon>
+              Fill Tank
+            </button>
+            <button ion-item (click)="TankFilled()">
+              <ion-icon name="cart" item-start></ion-icon>
+              Tank Filled
+            </button>
+            <button ion-item (click)="Emergency()" [ngStyle]="{'background-color': buttonColor}">
+              <ion-icon name="cart" item-start></ion-icon>
+              Emergency
+            </button>
+            <button ion-item (click)="openChat('HETShah')">
+              <ion-icon name="cart" item-start></ion-icon>
+              Chat
+            </button>
+            <button ion-item (click)="MemberX()">
+              <ion-icon name="cart" item-start></ion-icon>
+              Members
+            </button>
+            
+
+        </ion-list>
+      </ion-item>
+      <!--End of 2st -->
+      <!--Start of 3st -->
+      <ion-item *ngSwitchCase="'About'">
+        <ion-item>
+          <ion-avatar item-left>
+            <img src="{{imageUrl}}?sz=500" />
+          </ion-avatar>
+          <h2>About Us</h2>
+          <p>{{userId}}</p>
+        </ion-item>
+
+        <img src="assets/img/society1.png" />
+
+        <ion-card-content>
+          <p class="ovrflow">We Manage Your Problems of Society with an<br/> Application.Share this to your Friends and<br/> Let the Society
+            Handle the Expences and <br/>All the Problems at one Place.</p>
+        </ion-card-content>
+
+        <ion-row>
+          <ion-col>
+            <button ion-button icon-left clear small>
+                <ion-icon name="heart"></ion-icon>
+                <div>     We Love You {{givenName}}</div>
+              </button>
+          </ion-col>
+        </ion-row>
+        <button ion-button (click)="myOwnedClass()">DataRefresh</button>
+        <ion-list>
+          <button ion-item *ngFor="let item of DRapidata" (click)="itemSelected(item)">
+                <ion-icon name="cart" item-start></ion-icon>
+                {{item.uName}}
+              </button>
+        </ion-list>
+      </ion-item>
+      <!--End of 3st -->
+
+
+    </div>
+  </ion-card>
+
+
+</ion-content>
